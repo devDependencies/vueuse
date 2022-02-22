@@ -1,4 +1,4 @@
-import { Fn } from '@vueuse/shared'
+import type { Fn } from '@vueuse/shared'
 import { getCurrentScope } from 'vue-demi'
 import { events } from './internal'
 
@@ -56,7 +56,7 @@ export function useEventBus<T = unknown>(key: EventBusIdentifier<T>): UseEventBu
   function once(listener: EventBusListener<T>) {
     function _listener(...args: any[]) {
       off(_listener)
-      // @ts-expect-error
+      // @ts-expect-error cast
       listener(...args)
     }
     return on(_listener)
